@@ -1,0 +1,350 @@
+/* =================================
+  Element Styles
+==================================== */
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #4c4c4c;
+  background: linear-gradient(0deg, #1b42ff, #82fbff) no-repeat fixed center;
+}
+
+.App {
+  width: 100%;
+  max-width: 900px;
+  margin: 2.5em auto;
+  border-radius: .35em;
+  background: #fcfcfc;
+  -webkit-box-shadow: 0 0 26px rgba(0, 0, 0, .13);
+  box-shadow: 0 0 26px rgba(0, 0, 0, .13);
+}
+
+h1,
+form button {
+  color: white;
+}
+
+h1 {
+  font-family: 'Courgette', cursive;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .4);
+  line-height: .65;
+  margin: 0;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 0.35em;
+}
+
+form {
+  width: 60%;
+  background: white;
+  display: inline-block;
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: .2em;
+  border: solid 4px white;
+  -webkit-box-shadow: 0 1px 14px rgba(0, 0, 0, .12);
+  box-shadow: 0 1px 14px rgba(0, 0, 0, .12);
+}
+
+form button {
+  padding: 0 1em;
+  font-size: 1.1em;
+  background: rgb(49, 109, 255);
+  border-radius: .2em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 2em 0 1em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+ul li {
+  padding: 1em;
+  background: #fff;
+  border-radius: .2em;
+  border: solid 2px rgb(146, 146, 255);
+  position: relative;
+}
+
+button {
+  cursor: pointer;
+}
+
+input,
+button {
+  border: none;
+  outline: none;
+}
+
+header {
+  text-align: center;
+  background: linear-gradient(90deg, #d4eece, #55b3d0, #1e7eb7),
+    url(../images/restaurant.jpg) no-repeat;
+  background-blend-mode: multiply;
+  background-size: cover;
+  border-radius: .35em .35em 0 0;
+}
+
+header input {
+  padding: 12px;
+  font-size: 1.15em;
+  width: 100%;
+}
+
+li span,
+li input[type=text] {
+  color: #000000;
+  font-size: 1.3em;
+  margin-bottom: .3em;
+}
+
+li input[type=text] {
+  padding: .2em;
+  width: 95%;
+  border: 1px dotted rgba(0, 0, 0, .2);
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+li label {
+  font-size: .9em;
+  display: block;
+  color: rgba(112, 112, 112, .55);
+}
+
+li span,
+li input[type=text]:first-child {
+  display: block;
+}
+
+li button {
+  font-size: .8em;
+  margin-top: 1.65em;
+  margin-right: .4em;
+  border-radius: .3em;
+  padding: .4em .6em;
+  color: white;
+  background: #2254ff;
+}
+
+li button:last-child {
+  background: rgba(34, 84, 255, .5);
+}
+
+div > input:last-child {
+  font-size: 1em;
+  margin-left: 6px;
+}
+
+div > label {
+  color: #767676;
+}
+
+.counter {
+  display: block;
+}
+
+tr {
+  color: rgba(118, 118, 118, .75);
+}
+
+td:first-child {
+  padding-right: 10px;
+}
+
+td:last-child {
+  font-weight: bold;
+  font-size: 1.16em;
+  color: rgb(118, 118, 118);
+}
+
+/*---------- Pending ----------*/
+
+.pending {
+  border-color: rgba(210, 210, 210, .5);
+}
+
+.pending span {
+  color: rgb(210, 210, 210);
+}
+
+/*---------- Responded ----------*/
+
+.responded {
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  border-color: rgba(21, 0, 255, 0.9);
+}
+
+.responded label {
+  -webkit-transition: 0.4s;
+  -o-transition: 0.4s;
+  transition: 0.4s;
+  color: rgb(22, 57, 255);
+}
+
+footer {
+  text-align: center;
+  padding: 15px 0;
+  background: #000a8e;
+  color: #ffffff;
+  font-size: .75em;
+  border-radius: 0 0 .35em .35em;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* =================================
+  Media Queries
+==================================== */
+@media (max-width: 410px) {
+  form {
+    width: 75%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  form input {
+    text-align: center;
+  }
+  form button {
+    padding: 12px 0;
+    margin-top: .5em;
+  }
+  .counter tbody tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .main ul li {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .App {
+    margin: 0 auto;
+  }
+  header {
+    padding: 3.25em 0;
+    height: 270px;
+  }
+  h1 {
+    font-size: 3em;
+    margin: .3em 0 0;
+  }
+  ul li {
+    margin-bottom: 1em;
+    width: 49%;
+  }
+  form {
+    max-width: 350px;
+    margin: auto;
+    margin-top: 2.5em;
+  }
+  form input {
+    font-size: 1em;
+  }
+  .wrapper {
+    margin: 0;
+  }
+  .main {
+    padding: 2em 1em .75em;
+  }
+  .counter {
+    margin-top: 1.65em;
+    padding-top: 1.5em;
+    border-top: 1px dotted rgba(0, 0, 0, .15);
+  }
+  .counter tbody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  tr {
+    display: inline-block;
+    padding: 0 12px 0 0;
+  }
+}
+
+@media (min-width: 769px) {
+  header {
+    height: 300px;
+    padding: 5em 1em;
+  }
+  div > label {
+    margin-top: 12px;
+  }
+  h1 {
+    font-size: 5.8em;
+  }
+  h2 {
+    font-size: 1.95em;
+  }
+  form {
+    margin: 4.15em auto 0;
+    z-index: 3000;
+    position: relative;
+  }
+  .wrapper {
+    width: 90%;
+  }
+  .main {
+    padding: 3.8em 1.5em .75em;
+    position: relative;
+    z-index: 10;
+  }
+  .counter {
+    float: right;
+    text-align: right;
+    margin-right: 1.25%;
+  }
+  td:last-child {
+    padding-left: 5px;
+  }
+  .main > div {
+    float: left;
+    margin-left: 1.25%;
+    margin-bottom: 1.5em;
+  }
+  ul {
+    display: -ms-flexbox;
+    display: flex;
+    clear: both;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-top: 1.25em;
+  }
+  ul li {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-preferred-size: 47.5%;
+    flex-basis: 47.5%;
+    margin: 0 1.25% 1em;
+  }
+}
+
+@media (min-width: 880px) {
+  ul li {
+    -ms-flex-preferred-size: 20%;
+    flex-basis: 20%;
+  }
+}
