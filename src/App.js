@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import GuestLIst from './components/GuestList';
 import ConfirmedFilter from './components/ConfirmedFilter';
+import Footer from './components/Footer';
 
 class App extends Component {
 
@@ -90,7 +91,6 @@ class App extends Component {
           </form>
         </header>
         <div className="main">
-
           <ConfirmedFilter
             toggleFilter={this.toggleFilter}
             isFiltered={this.state.isFiltered}
@@ -121,17 +121,10 @@ class App extends Component {
             removeGuestAt={this.removeGuestAt}
             isFiltered={this.state.isFiltered}
           />
-
         </div>
-        <footer>
-          <span>Made with ❤ by &nbsp;
-            <a
-              href="https://donycisneros.now.sh"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Dony Cisneros</a>
-          </span>
-        </footer>
+
+        <Footer author={"Dony Cisneros"} />
+
       </div>
     );
   }
