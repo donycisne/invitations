@@ -7,30 +7,62 @@ class App extends Component {
     guests: [
       {
         name: 'Dony',
-        isConfirmed: true
+        isConfirmed: true,
+        isEditing: false
       },
       {
         name: 'Luciana',
-        isConfirmed: true
+        isConfirmed: true,
+        isEditing: false
       },
       {
         name: 'Tom',
-        isConfirmed: false
+        isConfirmed: false,
+        isEditing: true
       },
       {
         name: 'Sabrina',
-        isConfirmed: true
+        isConfirmed: true,
+        isEditing: false
       },
     ]
   };
 
-  toggleConfirmationAt = (indexToChange) => {
+  toggleGuestPropertyAt = (property, indexToChange) => {
     this.setState(prevState => ({
       guests: prevState.guests.map((guest, index) => {
         if(index === indexToChange) {
           return {
             ...guest,
-            isConfirmed: !guest.isConfirmed
+            [property]: !guest[property]
+          }
+        }
+        return guest;
+      })
+    }));
+  }
+
+  toggleConfirmationAt = index =>
+    this.toggleGuestPropertyAt("isConfirmed", index);
+
+  toggleEditingAt = index =>
+    this.toggleGuestPropertyAt("isEditing", index);
+
+  removeGuestAt = index =>
+    this.setState(prevState => ({
+      guests: [
+        ...prevState.guests.slice(0, index),
+        ...prevState.guests.slice(index + 1)
+      ]
+    }));
+
+  setNameAt = (name, indexToChange) => {
+    this.setState(prevState => ({
+      guests: prevState.guests.map((guest, index) => {
+        if(index === indexToChange) {
+          return {
+            ...guest,
+            name
           }
         }
         return guest;
@@ -75,6 +107,9 @@ class App extends Component {
           <GuestLIst
             guests={this.state.guests}
             toggleConfirmationAt={this.toggleConfirmationAt}
+            toggleEditingAt={this.toggleEditingAt}
+            setNameAt={this.setNameAt}
+            removeGuestAt={this.removeGuestAt}
           />
 
         </div>
