@@ -24,6 +24,20 @@ class App extends Component {
     ]
   };
 
+  toggleConfirmationAt = (indexToChange) => {
+    this.setState(prevState => ({
+      guests: prevState.guests.map((guest, index) => {
+        if(index === indexToChange) {
+          return {
+            ...guest,
+            isConfirmed: !guest.isConfirmed
+          }
+        }
+        return guest;
+      })
+    }));
+  }
+
   render() {
     return (
       <div className="App">
@@ -57,7 +71,12 @@ class App extends Component {
               </tr>
             </tbody>
           </table>
-          <GuestLIst  guests={this.state.guests} />
+
+          <GuestLIst
+            guests={this.state.guests}
+            toggleConfirmationAt={this.toggleConfirmationAt}
+          />
+
         </div>
         <footer>
           <span>Made with ❤ by &nbsp;
