@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 
 import GuestLIst from './components/GuestList';
+import ConfirmedFilter from './components/ConfirmedFilter';
+
 class App extends Component {
 
   state = {
+    isFiltered: false,
     guests: [
       {
         name: 'Dony',
@@ -70,6 +73,12 @@ class App extends Component {
     }));
   }
 
+  toggleFilter = () => {
+    this.setState(prevState => ({
+      isFiltered: !prevState.isFiltered
+    }));
+  }
+
   render() {
     return (
       <div className="App">
@@ -81,12 +90,12 @@ class App extends Component {
           </form>
         </header>
         <div className="main">
-          <div>
-            <h2>Invitees</h2>
-            <label>
-              <input type="checkbox" /> Hide those who haven't responded
-            </label>
-          </div>
+
+          <ConfirmedFilter
+            toggleFilter={this.toggleFilter}
+            isFiltered={this.state.isFiltered}
+          />
+
           <table className="counter">
             <tbody>
               <tr>
@@ -110,6 +119,7 @@ class App extends Component {
             toggleEditingAt={this.toggleEditingAt}
             setNameAt={this.setNameAt}
             removeGuestAt={this.removeGuestAt}
+            isFiltered={this.state.isFiltered}
           />
 
         </div>
