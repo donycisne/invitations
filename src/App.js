@@ -1,6 +1,29 @@
 import React, { Component } from 'react';
 
+import GuestLIst from './components/GuestList';
 class App extends Component {
+
+  state = {
+    guests: [
+      {
+        name: 'Dony',
+        isConfirmed: true
+      },
+      {
+        name: 'Luciana',
+        isConfirmed: true
+      },
+      {
+        name: 'Tom',
+        isConfirmed: false
+      },
+      {
+        name: 'Sabrina',
+        isConfirmed: true
+      },
+    ]
+  };
+
   render() {
     return (
       <div className="App">
@@ -34,31 +57,7 @@ class App extends Component {
               </tr>
             </tbody>
           </table>
-          <ul>
-            <li className="pending"><span>Dony</span></li>
-            <li className="responded"><span>Luciana</span>
-              <label>
-                <input type="checkbox" checked /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-            <li className="responded"><span>Tom</span>
-              <label>
-                <input type="checkbox" checked /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-            <li>
-              <span>Sabrina</span>
-              <label>
-                <input type="checkbox" /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-          </ul>
+          <GuestLIst  guests={this.state.guests} />
         </div>
         <footer>
           <span>Made with ❤ by &nbsp;
