@@ -180,7 +180,7 @@ li button:last-child {
 
 /*---------- Responded ----------*/
 
-.responded {
+li.responded {
   -webkit-transition: 0.4s;
   -o-transition: 0.4s;
   transition: 0.4s;

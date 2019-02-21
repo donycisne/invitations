@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import GuestInputForm from './components/GuestInputForm';
 import GuestLIst from './components/GuestList';
 import ConfirmedFilter from './components/ConfirmedFilter';
 import Footer from './components/Footer';
@@ -8,6 +9,7 @@ class App extends Component {
 
   state = {
     isFiltered: false,
+    pendingGuest: "",
     guests: [
       {
         name: 'Dony',
@@ -33,7 +35,7 @@ class App extends Component {
   };
 
   toggleGuestPropertyAt = (property, indexToChange) => {
-    this.setState(prevState => ({
+    this.setState( prevState => ({
       guests: prevState.guests.map((guest, index) => {
         if(index === indexToChange) {
           return {
@@ -46,22 +48,25 @@ class App extends Component {
     }));
   }
 
-  toggleConfirmationAt = index =>
+  toggleConfirmationAt = (index) => {
     this.toggleGuestPropertyAt("isConfirmed", index);
+  }
 
-  toggleEditingAt = index =>
+  toggleEditingAt = (index) => {
     this.toggleGuestPropertyAt("isEditing", index);
+  }
 
-  removeGuestAt = index =>
-    this.setState(prevState => ({
+  removeGuestAt = (index) => {
+    this.setState( prevState => ({
       guests: [
         ...prevState.guests.slice(0, index),
         ...prevState.guests.slice(index + 1)
       ]
     }));
+  }
 
   setNameAt = (name, indexToChange) => {
-    this.setState(prevState => ({
+    this.setState( prevState => ({
       guests: prevState.guests.map((guest, index) => {
         if(index === indexToChange) {
           return {
@@ -75,9 +80,32 @@ class App extends Component {
   }
 
   toggleFilter = () => {
-    this.setState(prevState => ({
+    this.setState( prevState => ({
       isFiltered: !prevState.isFiltered
     }));
+  }
+
+  handleNameInput = (e) => {
+    this.setState({
+      pendingGuest: e.target.value
+    });
+  }
+
+  newGuestSubmitHandler = (e) => {
+    e.preventDefault();
+    if (this.state.pendingGuest.trim() !== '') {
+      this.setState( prevState => ({
+        guests: [
+          {
+            name: prevState.pendingGuest,
+            isConfirmed: false,
+            isEditing: false
+          },
+          ...prevState.guests
+        ],
+        pendingGuest: ''
+      }));
+    }
   }
 
   render() {
@@ -85,10 +113,11 @@ class App extends Component {
       <div className="App">
         <header>
           <h1>Invitations</h1>
-          <form>
-            <input type="text" value="Laura" placeholder="Invite Someone" />
-            <button type="submit" name="submit" value="submit">Invite</button>
-          </form>
+          <GuestInputForm
+            newGuestSubmitHandler={this.newGuestSubmitHandler}
+            pendingGuest={this.state.pendingGuest}
+            handleNameInput={this.handleNameInput}
+          />
         </header>
         <div className="main">
           <ConfirmedFilter
