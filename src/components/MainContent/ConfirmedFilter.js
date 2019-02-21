@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ConfirmedFilter = props => (
+const ConfirmedFilter = (props) => (
   <div className="invitees">
     <h2>Invitees</h2>
     <label className="invitees-check">

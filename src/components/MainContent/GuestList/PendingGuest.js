@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PendingGuest = props => {
+const PendingGuest = (props) => {
   if (props.name.trim() !== '') {
     return (
       <li className="pending">

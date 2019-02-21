@@ -229,7 +229,7 @@ footer a {
     display: flex;
     justify-content: space-between;
   }
-  .main .guest-list li {
+  main .guest-list li {
     width: 100%;
   }
 }
@@ -261,7 +261,7 @@ footer a {
   .wrapper {
     margin: 0;
   }
-  .main {
+  main {
     padding: 2em 1em .75em;
   }
   .counter {
@@ -302,7 +302,7 @@ footer a {
   .wrapper {
     width: 90%;
   }
-  .main {
+  main {
     padding: 3.8em 1.5em .75em;
     position: relative;
     z-index: 10;

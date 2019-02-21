@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import GuestName from './GuestName';
 
-const Guest = props => (
+const Guest = (props) => (
   <li className={props.isConfirmed ? 'responded' : null}>
     <GuestName
       isEditing={props.isEditing}
