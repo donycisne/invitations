@@ -149,6 +149,7 @@ class App extends Component {
             setNameAt={this.setNameAt}
             removeGuestAt={this.removeGuestAt}
             isFiltered={this.state.isFiltered}
+            pendingGuest={this.state.pendingGuest}
           />
         </div>
 
