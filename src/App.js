@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import GuestInputForm from './components/GuestInputForm';
-import GuestLIst from './components/GuestList';
 import ConfirmedFilter from './components/ConfirmedFilter';
+import Counter from './components/Counter';
+import GuestLIst from './components/GuestList';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -108,7 +109,19 @@ class App extends Component {
     }
   }
 
+  getAttendingGuests = () =>
+    this.state.guests.reduce(
+      (total, guest) => guest.isConfirmed ? total + 1 : total,
+    0);
+
+  getTotalInvited = () => this.state.guests.length;
+
   render() {
+
+    const totalInvited = this.getTotalInvited();
+    const numberAttending = this.getAttendingGuests();
+    const numberUnconfirmed = totalInvited - numberAttending;
+
     return (
       <div className="App">
         <header>
@@ -125,22 +138,11 @@ class App extends Component {
             isFiltered={this.state.isFiltered}
           />
 
-          <table className="counter">
-            <tbody>
-              <tr>
-                <td>Attending:</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Unconfirmed:</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>Total:</td>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
+          <Counter
+            totalInvited={totalInvited}
+            numberAttending={numberAttending}
+            numberUnconfirmed={numberUnconfirmed}
+          />
 
           <GuestLIst
             guests={this.state.guests}
