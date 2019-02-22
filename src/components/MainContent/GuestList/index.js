@@ -1,38 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Consumer } from '../../Context';
 
 import Guest from './Guest';
 import PendingGuest from './PendingGuest';
 
-const GuestList = (props) => (
-  <ul className="guest-list">
-    <PendingGuest name={props.pendingGuest} />
-    {props.guests
-      .filter(guest => !props.isFiltered || guest.isConfirmed)
-      .map((guest, index) =>
-        <Guest
-          key={index}
-          name={guest.name}
-          isConfirmed={guest.isConfirmed}
-          isEditing={guest.isEditing}
-          handleConfirmation={() => props.toggleConfirmation(guest.id)}
-          handleToggleEditing={() => props.toggleEditing(guest.id)}
-          setName={text => props.setName(text, guest.id)}
-          handleRemove={() => props.removeGuest(guest.id)}
-        />
-      )
-    }
-  </ul>
+const GuestList = () => (
+  <Consumer>
+    {context => (
+      <ul className="guest-list">
+        <PendingGuest name={context.actions.pendingGuest} />
+        {context.actions.guests
+          .filter(guest => !context.actions.isFiltered || guest.isConfirmed)
+          .map((guest, index) =>
+            <Guest
+              key={index}
+              name={guest.name}
+              isConfirmed={guest.isConfirmed}
+              isEditing={guest.isEditing}
+              handleConfirmation={() => context.actions.toggleConfirmation(guest.id)}
+              handleToggleEditing={() => context.actions.toggleEditing(guest.id)}
+              setName={text => context.actions.setName(text, guest.id)}
+              handleRemove={() => context.actions.removeGuest(guest.id)}
+            />
+          )
+        }
+      </ul>
+    )}
+  </Consumer>
 );
-
-GuestList.propTypes = {
-  guests: PropTypes.array.isRequired,
-  setName: PropTypes.func.isRequired,
-  toggleConfirmation: PropTypes.func.isRequired,
-  toggleEditing: PropTypes.func.isRequired,
-  removeGuest: PropTypes.func.isRequired,
-  isFiltered: PropTypes.bool.isRequired,
-  pendingGuest: PropTypes.string.isRequired
-};
 
 export default GuestList;

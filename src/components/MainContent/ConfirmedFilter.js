@@ -1,23 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Consumer } from '../Context'
 
-const ConfirmedFilter = (props) => (
-  <div className="invitees">
-    <h2>Invitees</h2>
-    <label className="invitees-check">
-      <input
-        type="checkbox"
-        onChange={props.toggleFilter}
-        checked={props.isFiltered}
-      />
-      Hide those who haven't responded
-    </label>
-  </div>
+const ConfirmedFilter = () => (
+  <Consumer>
+    {context => (
+      <div className="invitees">
+        <h2>Invitees</h2>
+        <label className="invitees-check">
+          <input
+            type="checkbox"
+            onChange={context.actions.toggleFilter}
+            checked={context.actions.isFiltered}
+          />
+          Hide those who haven't responded
+        </label>
+      </div>
+    )}
+  </Consumer>
 );
-
-ConfirmedFilter.propTypes = {
-  toggleFilter: PropTypes.func.isRequired,
-  isFiltered: PropTypes.bool.isRequired
-};
 
 export default ConfirmedFilter;

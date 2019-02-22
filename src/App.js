@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Provider } from './components/Context';
 
 import Header from './components/Header'
 import MainContent from './components/MainContent';
@@ -102,36 +103,34 @@ class App extends Component {
 
   getTotalInvited = () => this.state.guests.length;
 
+  numberUnconfirmed = () =>
+    this.getTotalInvited() - this.getAttendingGuests()
+
   render() {
-
-    const totalInvited = this.getTotalInvited();
-    const numberAttending = this.getAttendingGuests();
-    const numberUnconfirmed = totalInvited - numberAttending;
-
     return (
-      <div className="App">
-        <Header
-          newGuestSubmitHandler={this.newGuestSubmitHandler}
-          pendingGuest={this.state.pendingGuest}
-          handleNameInput={this.handleNameInput}
-        />
-        <MainContent
-          toggleFilter={this.toggleFilter}
-          isFiltered={this.state.isFiltered}
-          totalInvited={totalInvited}
-          numberAttending={numberAttending}
-          numberUnconfirmed={numberUnconfirmed}
-          guests={this.state.guests}
-          toggleConfirmation={this.toggleConfirmation}
-          toggleEditing={this.toggleEditing}
-          setName={this.setName}
-          removeGuest={this.removeGuest}
-          pendingGuest={this.state.pendingGuest}
-        />
-        <Footer
-          author={"Dony Cisneros"}
-        />
-      </div>
+      <Provider value={{
+        actions: {
+          newGuestSubmitHandler:this.newGuestSubmitHandler,
+          pendingGuest: this.state.pendingGuest,
+          handleNameInput: this.handleNameInput,
+          toggleFilter: this.toggleFilter,
+          isFiltered: this.state.isFiltered,
+          totalInvited: this.getTotalInvited(),
+          numberAttending: this.getAttendingGuests(),
+          numberUnconfirmed: this.numberUnconfirmed(),
+          guests: this.state.guests,
+          toggleConfirmation: this.toggleConfirmation,
+          toggleEditing: this.toggleEditing,
+          setName: this.setName,
+          removeGuest: this.removeGuest,
+        }
+      }}>
+        <div className="invitations">
+          <Header />
+          <MainContent />
+          <Footer />
+        </div>
+      </Provider>
     );
   }
 }

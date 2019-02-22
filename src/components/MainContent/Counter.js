@@ -1,29 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Consumer } from '../Context';
 
-const Counter = (props) => (
-  <table className="counter">
-    <tbody>
-      <tr>
-        <td>Attending:</td>
-        <td>{props.numberAttending}</td>
-      </tr>
-      <tr>
-        <td>Unconfirmed:</td>
-        <td>{props.numberUnconfirmed}</td>
-      </tr>
-      <tr>
-        <td>Total:</td>
-        <td>{props.totalInvited}</td>
-      </tr>
-    </tbody>
-  </table>
+const Counter = () => (
+  <Consumer>
+    {context => (
+      <table className="counter">
+        <tbody>
+          <tr>
+            <td>Attending:</td>
+            <td>{context.actions.numberAttending}</td>
+          </tr>
+          <tr>
+            <td>Unconfirmed:</td>
+            <td>{context.actions.numberUnconfirmed}</td>
+          </tr>
+          <tr>
+            <td>Total:</td>
+            <td>{context.actions.totalInvited}</td>
+          </tr>
+        </tbody>
+      </table>
+    )}
+  </Consumer>
 );
-
-Counter.propTypes = {
-  numberAttending: PropTypes.number,
-  numberUnconfirmed: PropTypes.number,
-  totalInvited: PropTypes.number
-};
 
 export default Counter;
