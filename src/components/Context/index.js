@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+const uuidv1 = require('uuid/v1') ;
+
 const InvitationsContext = React.createContext();
 
 export class Provider extends Component {
@@ -10,12 +12,17 @@ export class Provider extends Component {
     guests: []
   };
 
-  lastGuestId = 0;
+  componentDidMount() {
+    const localStorageRef = localStorage.getItem('guests', this.state.guests)
+    if (localStorageRef) {
+      this.setState({
+        guests: JSON.parse(localStorageRef)
+      });
+    }
+  }
 
-  newGuestId = () => {
-    const id = this.lastGuestId;
-    this.lastGuestId += 1;
-    return id;
+  setLocalStorage() {
+    localStorage.setItem('guests', JSON.stringify(this.state.guests));
   }
 
   toggleGuestProperty = (property, id) => {
@@ -29,7 +36,7 @@ export class Provider extends Component {
         }
         return guest;
       })
-    }));
+    }), this.setLocalStorage);
   }
 
   toggleConfirmation = (id) => {
@@ -45,7 +52,7 @@ export class Provider extends Component {
       guests: prevState.guests.filter(
         guest => id !== guest.id
       )
-    }));
+    }), this.setLocalStorage);
   }
 
   setName = (name, id) => {
@@ -59,7 +66,7 @@ export class Provider extends Component {
         }
         return guest;
       })
-    }));
+    }), this.setLocalStorage);
   }
 
   toggleFilter = () => {
@@ -76,7 +83,7 @@ export class Provider extends Component {
 
   newGuestSubmitHandler = (e) => {
     e.preventDefault();
-    const id = this.newGuestId();
+    const id = uuidv1();
     if (this.state.pendingGuest.trim() !== '') {
       this.setState( prevState => ({
         guests: [
@@ -89,7 +96,7 @@ export class Provider extends Component {
           ...prevState.guests
         ],
         pendingGuest: ''
-      }));
+      }), this.setLocalStorage);
     }
   }
 
