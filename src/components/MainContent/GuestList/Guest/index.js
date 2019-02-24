@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import GuestName from './GuestName';
 
 const Guest = (props) => (
-  <li className={props.isConfirmed ? 'responded' : null}>
+  <li
+    className={`${props.isConfirmed ? 'responded' : 'no-responded'} ${props.isEditing ? 'editing' : 'no-editing'}`}
+  >
     <GuestName
       isEditing={props.isEditing}
       handleNameEdits={e => props.setName(e.target.value)}
@@ -16,7 +18,9 @@ const Guest = (props) => (
         type="checkbox"
         checked={props.isConfirmed}
         onChange={props.handleConfirmation}
-      /> Confirmed
+      />
+      <span className="checkmark-guest"></span>
+       Confirmed
     </label>
     <button onClick={props.handleToggleEditing}>
       {props.isEditing ? 'save' : 'edit'}

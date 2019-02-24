@@ -12,6 +12,7 @@ const ConfirmedFilter = () => (
             onChange={context.actions.toggleFilter}
             checked={context.actions.isFiltered}
           />
+          <span className="checkmark-invitees"></span>
           Hide those who haven't responded
         </label>
       </div>
