@@ -14,10 +14,12 @@ export class Provider extends Component {
 
   componentDidMount() {
     const localStorageRef = localStorage.getItem('guests', this.state.guests)
+    const localStorageFiltered = localStorage.getItem('guests-responded', this.state.isFiltered)
     if (localStorageRef) {
-      this.setState({
-        guests: JSON.parse(localStorageRef)
-      });
+      this.setState({ guests: JSON.parse(localStorageRef) })
+    }
+    if (localStorageFiltered) {
+      this.setState({ isFiltered: JSON.parse(localStorageFiltered) })
     }
   }
 
@@ -71,8 +73,10 @@ export class Provider extends Component {
 
   toggleFilter = () => {
     this.setState( prevState => ({
-      isFiltered: !prevState.isFiltered
-    }));
+      isFiltered: !prevState.isFiltered,
+    }),
+    () => localStorage.setItem('guests-responded', JSON.stringify(this.state.isFiltered))
+    );
   }
 
   handleNameInput = (e) => {
