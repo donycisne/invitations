@@ -2,6 +2,11 @@
   "name": "invitations",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name" : "Dony Cisneros",
+    "email" : "dony.cisne@gmail.com",
+    "url" : "https://www.donycisneros.com/"
+  },
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "^16.8.2",
